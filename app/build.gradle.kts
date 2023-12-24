@@ -1,3 +1,10 @@
+/*
+ * Created by Hardik on 23/12/23, 5:40 pm
+ * Copyright (c) 2023 . All rights reserved.
+ * Last modified 23/12/23, 5:40 pm
+ *
+ */
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,12 +12,12 @@ plugins {
 
 android {
     namespace = "com.hardik.ianveshak"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.hardik.stoolie"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -51,6 +58,7 @@ android {
 
 dependencies {
 
+    implementation(project(mapOf("path" to ":dexter")))
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.8.1")

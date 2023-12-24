@@ -1,10 +1,17 @@
+/*
+ * Created by Hardik on 24/12/23, 2:26 pm
+ * Copyright (c) 2023 . All rights reserved.
+ * Last modified 24/12/23, 2:26 pm
+ *
+ */
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
-    namespace = "com.hardik.stoolie"
+    namespace = "com.hardik.dexter"
     compileSdk = 33
 
     defaultConfig {

@@ -1,12 +1,17 @@
-package com.hardik.stoolie
+/*
+ * Created by Hardik on 24/12/23, 2:27 pm
+ * Copyright (c) 2023 . All rights reserved.
+ * Last modified 24/12/23, 2:27 pm
+ *
+ */
 
-import androidx.test.platform.app.InstrumentationRegistry
+package com.hardik.dexter
+
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.

@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "iAnveshak"
 include(":app")
-include(":stoolie")
+include(":dexter")

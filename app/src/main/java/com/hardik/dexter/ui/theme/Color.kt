@@ -1,4 +1,11 @@
-package com.hardik.stoolie.ui.theme
+/*
+ * Created by Hardik on 24/12/23, 2:27 pm
+ * Copyright (c) 2023 . All rights reserved.
+ * Last modified 24/12/23, 2:27 pm
+ *
+ */
+
+package com.hardik.dexter.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
