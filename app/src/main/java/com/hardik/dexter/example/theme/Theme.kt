@@ -1,11 +1,11 @@
 /*
- * Created by Hardik on 24/12/23, 8:27 pm
+ * Created by Hardik on 24/12/23, 8:34 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 8:27 pm
+ * Last modified 24/12/23, 8:34 pm
  *
  */
 
-package com.hardik.dexter_example.ui.theme
+package com.hardik.dexter.example.theme
 
 import android.app.Activity
 import android.os.Build

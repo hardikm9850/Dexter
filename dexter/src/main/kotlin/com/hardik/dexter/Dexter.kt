@@ -1,16 +1,16 @@
 /*
- * Created by Hardik on 24/12/23, 8:27 pm
+ * Created by Hardik on 24/12/23, 8:34 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 8:27 pm
+ * Last modified 24/12/23, 8:34 pm
  *
  */
 
-package com.hardik.dexter_example
+package com.hardik.dexter
 
 import android.app.Application
 import android.util.Log
-import com.hardik.dexter_example.internal.logger.DexterLogger
-import com.hardik.dexter_example.internal.tracker.ActivityTracker
+import com.hardik.dexter.internal.logger.DexterLogger
+import com.hardik.dexter.internal.tracker.ActivityTracker
 import java.lang.Thread.UncaughtExceptionHandler
 import java.time.Instant
 import java.util.Arrays

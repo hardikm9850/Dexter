@@ -1,11 +1,11 @@
 /*
- * Created by Hardik on 24/12/23, 8:27 pm
+ * Created by Hardik on 24/12/23, 8:34 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 8:27 pm
+ * Last modified 24/12/23, 8:34 pm
  *
  */
 
-package com.hardik.dexter_example.internal.tracker
+package com.hardik.dexter.internal.tracker
 
 import android.app.Activity
 import android.app.Application
@@ -15,8 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
-import com.hardik.dexter_example.internal.model.ActivityInfo
-import com.hardik.dexter_example.internal.model.FragmentInfo
+import com.hardik.dexter.internal.model.ActivityInfo
+import com.hardik.dexter.internal.model.FragmentInfo
 
 class ActivityTracker constructor(private val application: Application) :
     FragmentLifecycleCallbacks() {
