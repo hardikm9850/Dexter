@@ -1,11 +1,11 @@
 /*
- * Created by Hardik on 24/12/23, 2:27 pm
+ * Created by Hardik on 24/12/23, 8:27 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 2:27 pm
+ * Last modified 24/12/23, 8:27 pm
  *
  */
 
-package com.hardik.dexter.ui.theme
+package com.hardik.dexter_example.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -45,7 +45,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun IAnveshakTheme(
+fun DexterTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

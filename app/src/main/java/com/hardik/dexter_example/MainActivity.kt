@@ -1,11 +1,11 @@
 /*
- * Created by Hardik on 24/12/23, 2:27 pm
+ * Created by Hardik on 24/12/23, 8:29 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 2:27 pm
+ * Last modified 24/12/23, 8:27 pm
  *
  */
 
-package com.hardik.dexter
+package com.hardik.dexter_example
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -21,13 +21,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.hardik.dexter.ui.theme.IAnveshakTheme
+import com.hardik.dexter_example.ui.theme.DexterTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            IAnveshakTheme {
+            DexterTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -47,11 +47,14 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         modifier = modifier,
     )
     Spacer(modifier = Modifier.height(20.dp))
-    Button(onClick = {
-        throw RuntimeException("crash!")
-        // val compute = 1 / 0
-        // Log.d(MainActivity::class.simpleName, "Computation is $compute")
-    }) {
+    Button(
+        modifier = Modifier.height(20.dp),
+        onClick = {
+            throw RuntimeException("crash!")
+            // val compute = 1 / 0
+            // Log.d(MainActivity::class.simpleName, "Computation is $compute")
+        },
+    ) {
         Text(text = "Click to cause an Arithmetic crash")
     }
 }
@@ -59,7 +62,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    IAnveshakTheme {
+    DexterTheme {
         Greeting("Android")
     }
 }

@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 23/12/23, 5:40 pm
+ * Created by Hardik on 24/12/23, 8:27 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 23/12/23, 5:40 pm
+ * Last modified 24/12/23, 8:27 pm
  *
  */
 
@@ -11,11 +11,11 @@ plugins {
 }
 
 android {
-    namespace = "com.hardik.ianveshak"
+    namespace = "com.hardik.dexter_example"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.hardik.stoolie"
+        applicationId = "com.hardik.dexter_example"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

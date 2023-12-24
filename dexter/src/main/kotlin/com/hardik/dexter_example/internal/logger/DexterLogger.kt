@@ -1,11 +1,11 @@
 /*
- * Created by Hardik on 24/12/23, 2:33 pm
+ * Created by Hardik on 24/12/23, 8:27 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 2:33 pm
+ * Last modified 24/12/23, 8:27 pm
  *
  */
 
-package com.hardik.dexter.internal.logger
+package com.hardik.dexter_example.internal.logger
 
 import android.util.Log
 
