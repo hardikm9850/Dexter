@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 27/12/23, 12:35 pm
+ * Created by Hardik on 27/12/23, 12:51 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 27/12/23, 12:35 pm
+ * Last modified 27/12/23, 12:51 pm
  *
  */
 
@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
 import com.hardik.dexter.internal.model.ActivityInfo
 import com.hardik.dexter.internal.model.FragmentInfo
+import com.hardik.dexter.ui.ReportActivity
 import com.hardik.dexter.utils.ext.getDateForTimeStamp
 import com.hardik.dexter.utils.ext.toKeyValuePair
 
@@ -43,7 +44,9 @@ class ActivityTracker constructor(private val application: Application) :
 
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 recentActivity = activity
-
+                if (activity is ReportActivity) {
+                    return
+                }
                 // we need to save the activity and related intent info
                 activityList.add(
                     ActivityInfo(

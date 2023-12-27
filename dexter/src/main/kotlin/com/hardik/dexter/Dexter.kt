@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 27/12/23, 12:35 pm
+ * Created by Hardik on 27/12/23, 12:46 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 27/12/23, 12:35 pm
+ * Last modified 27/12/23, 12:46 pm
  *
  */
 
@@ -67,6 +67,8 @@ internal class Dexter {
             activityHistory.reversed(),
             fragmentHistory.reversed(),
         )
+
+        activityTracker = ActivityTracker(application)
     }
 
     private fun allowDefaultExceptionHandling(thread: Thread, throwable: Throwable) {
