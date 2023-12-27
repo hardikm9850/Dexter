@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 24/12/23, 8:34 pm
+ * Created by Hardik on 27/12/23, 12:35 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 8:34 pm
+ * Last modified 27/12/23, 12:35 pm
  *
  */
 
@@ -11,9 +11,8 @@ import android.app.Application
 import android.util.Log
 import com.hardik.dexter.internal.logger.DexterLogger
 import com.hardik.dexter.internal.tracker.ActivityTracker
+import com.hardik.dexter.ui.ReportActivity
 import java.lang.Thread.UncaughtExceptionHandler
-import java.time.Instant
-import java.util.Arrays
 
 internal class Dexter {
 
@@ -53,23 +52,21 @@ internal class Dexter {
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             // On receiving the uncaught exception, we need to store in preference
             DexterLogger.e(TAG, "Exception received on thread $thread", throwable)
-            val stacktrace = Arrays.toString(throwable.stackTrace).replace(',', '\n')
-            showCrashInvestigationReport(
-                stacktrace,
-            )
+            showCrashInvestigationReport(Log.getStackTraceString(throwable))
             allowDefaultExceptionHandling(thread, throwable)
         }
     }
 
     private fun showCrashInvestigationReport(stacktrace: String) {
-        Instant.now().epochSecond
-
         val activityHistory = activityTracker.getActivityJourney()
-        val fragmentHistory = activityTracker.getActivityJourney()
+        val fragmentHistory = activityTracker.getFragmentJourney()
 
-        activityHistory.forEach {
-            Log.d(TAG, it.toString())
-        }
+        ReportActivity.getReportActivityInstance(
+            application,
+            stacktrace,
+            activityHistory.reversed(),
+            fragmentHistory.reversed(),
+        )
     }
 
     private fun allowDefaultExceptionHandling(thread: Thread, throwable: Throwable) {

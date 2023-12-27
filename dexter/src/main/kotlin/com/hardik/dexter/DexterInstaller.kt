@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 24/12/23, 8:34 pm
+ * Created by Hardik on 24/12/23, 9:13 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 8:34 pm
+ * Last modified 24/12/23, 9:13 pm
  *
  */
 
@@ -35,7 +35,7 @@ class DexterInstaller {
                 }
                 Log.e(
                     Dexter::class.simpleName,
-                    "Dexter lib is already installed. No need to setup Dexter again.",
+                    "Dexter is already installed. No need to setup Dexter again.",
                 )
             }
         }

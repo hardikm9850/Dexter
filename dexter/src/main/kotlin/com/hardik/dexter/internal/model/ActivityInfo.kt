@@ -1,12 +1,14 @@
 /*
- * Created by Hardik on 24/12/23, 8:34 pm
+ * Created by Hardik on 27/12/23, 11:05 am
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 8:34 pm
+ * Last modified 27/12/23, 11:05 am
  *
  */
 
 package com.hardik.dexter.internal.model
 
-import android.content.Intent
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-data class ActivityInfo(val activity: String, val intent: Intent, val createdTimeStamp: Long)
+@Parcelize
+data class ActivityInfo(val activity: String, val bundleData: Map<String, String>, val createdTimeStamp: String) : Parcelable

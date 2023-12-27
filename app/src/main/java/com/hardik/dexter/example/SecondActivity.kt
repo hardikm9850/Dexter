@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 27/12/23, 11:10 am
+ * Created by Hardik on 27/12/23, 11:17 am
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 27/12/23, 11:10 am
+ * Last modified 27/12/23, 11:17 am
  *
  */
 
@@ -28,12 +28,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.hardik.dexter.example.theme.DexterTheme
 
-class MainActivity : ComponentActivity() {
+class SecondActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DexterTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     color = MaterialTheme.colorScheme.background,
                 ) {
@@ -42,7 +41,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Greeting()
+                        Greet()
                     }
                 }
             }
@@ -51,25 +50,27 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting() {
+fun Greet() {
     val context = LocalContext.current
     Text(
-        text = "Hello There!",
+        text = "Hello There, Again!",
     )
     Spacer(modifier = Modifier.height(20.dp))
     Button(
         onClick = {
-            startSecondActivity(context)
+            startThirdActivity(context)
         },
     ) {
-        Text(text = "Click to go to second activity")
+        Text(text = "Let's to go to third activity")
     }
 }
 
-fun startSecondActivity(context: Context) {
-    Intent(context, SecondActivity::class.java).apply {
-        putExtra("key1", "value1")
-        putExtra("key2", true)
+fun startThirdActivity(context: Context) {
+    Intent(context, ThirdActivity::class.java).apply {
+        putExtra("key3", "value1")
+        putExtra("key4", true)
+        putExtra("key5", 10f)
+        putExtra("key6", 100.00)
     }.also {
         context.startActivity(it)
     }

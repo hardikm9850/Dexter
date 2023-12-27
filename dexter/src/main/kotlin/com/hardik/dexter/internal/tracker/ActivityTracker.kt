@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 24/12/23, 8:34 pm
+ * Created by Hardik on 27/12/23, 12:35 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 8:34 pm
+ * Last modified 27/12/23, 12:35 pm
  *
  */
 
@@ -17,6 +17,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
 import com.hardik.dexter.internal.model.ActivityInfo
 import com.hardik.dexter.internal.model.FragmentInfo
+import com.hardik.dexter.utils.ext.getDateForTimeStamp
+import com.hardik.dexter.utils.ext.toKeyValuePair
 
 class ActivityTracker constructor(private val application: Application) :
     FragmentLifecycleCallbacks() {
@@ -46,8 +48,8 @@ class ActivityTracker constructor(private val application: Application) :
                 activityList.add(
                     ActivityInfo(
                         activity = activity::class.java.simpleName,
-                        intent = activity.intent,
-                        createdTimeStamp = System.currentTimeMillis(),
+                        bundleData = activity.intent.toKeyValuePair(),
+                        createdTimeStamp = System.currentTimeMillis().getDateForTimeStamp(),
                     ),
                 )
             }
@@ -77,8 +79,8 @@ class ActivityTracker constructor(private val application: Application) :
         fragmentList.add(
             FragmentInfo(
                 fragmentName = f::class.java.simpleName,
-                bundle = savedInstanceState,
-                renderedTimeStamp = System.currentTimeMillis(),
+                bundle = savedInstanceState?.toKeyValuePair().orEmpty(),
+                timeStamp = System.currentTimeMillis().getDateForTimeStamp(),
             ),
         )
         super.onFragmentViewCreated(fm, f, v, savedInstanceState)

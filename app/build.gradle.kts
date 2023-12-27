@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 24/12/23, 8:27 pm
+ * Created by Hardik on 24/12/23, 10:17 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 8:27 pm
+ * Last modified 24/12/23, 10:17 pm
  *
  */
 
@@ -47,7 +47,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.4"
     }
     packaging {
         resources {
