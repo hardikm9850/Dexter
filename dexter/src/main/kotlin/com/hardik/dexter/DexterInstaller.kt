@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 24/12/23, 9:13 pm
+ * Created by Hardik on 28/12/23, 1:32 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 9:13 pm
+ * Last modified 28/12/23, 1:32 pm
  *
  */
 
@@ -15,6 +15,13 @@ class DexterInstaller {
         private var dexterInstance: Dexter? = null
         private var lock = Any()
 
+        /**
+         * Creates a singleton Dexter instance
+         * @param application application instance
+         * @param isEnabled should enable Dexter
+         * @param defaultExceptionHandler if the client wants to capture the global exception
+         * @param enableDebugging if the client wants to view the logs
+         */
         fun setup(
             application: Application,
             isEnabled: Boolean = true,

@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 27/12/23, 12:46 pm
+ * Created by Hardik on 29/12/23, 5:01 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 27/12/23, 12:46 pm
+ * Last modified 29/12/23, 5:01 pm
  *
  */
 
@@ -40,6 +40,8 @@ internal class Dexter {
 
     private fun init() {
         DexterLogger.shouldEnableLogging(enableDebugging)
+        DexterLogger.d(TAG, "Dexter is being initialised")
+
         setUncaughtExceptionHandler()
         setupActivityTracker()
     }
@@ -75,6 +77,7 @@ internal class Dexter {
         defaultExceptionHandler?.let { handler ->
             handler::class.java.canonicalName?.apply {
                 if (startsWith("com.google.firease.crashlytics").not()) {
+                    DexterLogger.d(TAG, "Executing other exception handlers if any")
                     handler.uncaughtException(thread, throwable)
                 }
             }

@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 27/12/23, 12:36 pm
+ * Created by Hardik on 28/12/23, 1:25 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 27/12/23, 12:36 pm
+ * Last modified 28/12/23, 1:25 pm
  *
  */
 
@@ -18,12 +18,12 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -43,6 +43,7 @@ import com.hardik.dexter.internal.model.FragmentInfo
 import com.hardik.dexter.ui.screens.ActivityScreen
 import com.hardik.dexter.ui.screens.FragmentScreen
 import com.hardik.dexter.ui.screens.LogsScreen
+import com.hardik.dexter.ui.themes.DexterTheme
 
 class ReportActivity : androidx.activity.ComponentActivity() {
 
@@ -90,31 +91,30 @@ class ReportActivity : androidx.activity.ComponentActivity() {
     @Composable
     fun ReportView() {
         val navController = rememberNavController()
-        // TODO add FAB for sharing logs
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(text = "Dexter ")
-                    },
-                    backgroundColor = MaterialTheme.colors.primary,
-                    contentColor = Color.White,
-                    elevation = 10.dp,
-                    actions = {
-                        IconButton(onClick = {
-                            shareCrashReport()
-                        }) {
-                            Icon(Icons.Filled.Send, "Send logs")
-                        }
-                    },
-                )
-            },
-            bottomBar = {
-                SetupBottomNavigationMenu(navController)
-            },
-        ) {
-            Box(modifier = Modifier.padding(it)) {
-                NavigationGraph(navController)
+        DexterTheme {
+            Scaffold(
+                topBar = {
+                    TopAppBar(
+                        backgroundColor = MaterialTheme.colorScheme.primary,
+                        title = {
+                            Text(text = "Dexter", style = MaterialTheme.typography.titleLarge)
+                        },
+                        actions = {
+                            IconButton(onClick = {
+                                shareCrashReport()
+                            }) {
+                                Icon(Icons.Filled.Send, "Send logs", tint = Color.White)
+                            }
+                        },
+                    )
+                },
+                bottomBar = {
+                    SetupBottomNavigationMenu(navController)
+                },
+            ) {
+                Box(modifier = Modifier.padding(it)) {
+                    NavigationGraph(navController)
+                }
             }
         }
     }
@@ -124,11 +124,13 @@ class ReportActivity : androidx.activity.ComponentActivity() {
         val options = listOf(BottomNavItem.Logs, BottomNavItem.Activity, BottomNavItem.Fragment)
         var selectedScreen by remember { mutableStateOf(options.first()) }
 
-        BottomNavigation {
+        BottomNavigation(
+            backgroundColor = MaterialTheme.colorScheme.primary,
+        ) {
             options.forEach { screen ->
                 BottomNavigationItem(
                     icon = {},
-                    label = { Text(screen.title) },
+                    label = { Text(screen.title, style = MaterialTheme.typography.labelSmall) },
                     selected = screen.title == selectedScreen.title,
                     modifier = Modifier.padding(8.dp),
                     onClick = {

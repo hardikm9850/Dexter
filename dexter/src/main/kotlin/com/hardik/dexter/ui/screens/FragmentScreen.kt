@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 27/12/23, 12:42 pm
+ * Created by Hardik on 29/12/23, 5:10 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 27/12/23, 12:42 pm
+ * Last modified 29/12/23, 5:10 pm
  *
  */
 
@@ -42,7 +42,7 @@ fun FragmentScreen(fragmentJourney: List<FragmentInfo>) {
     if (fragmentJourney.isEmpty()) {
         Box(
             modifier = Modifier
-                .background(Color.Cyan)
+                .background(Color.White)
                 .fillMaxWidth()
                 .fillMaxHeight(),
             contentAlignment = Alignment.Center,

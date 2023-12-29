@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 27/12/23, 11:10 am
+ * Created by Hardik on 29/12/23, 5:44 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 27/12/23, 11:10 am
+ * Last modified 29/12/23, 5:44 pm
  *
  */
 
@@ -26,7 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.hardik.dexter.example.theme.DexterTheme
+import com.hardik.dexter.ui.themes.DexterTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,9 +67,14 @@ fun Greeting() {
 }
 
 fun startSecondActivity(context: Context) {
+    val platforms = ArrayList<String>()
+    platforms.add("Android")
+    platforms.add("iOS")
+    platforms.add("Flutter")
     Intent(context, SecondActivity::class.java).apply {
         putExtra("key1", "value1")
         putExtra("key2", true)
+        putExtra("key3", platforms)
     }.also {
         context.startActivity(it)
     }

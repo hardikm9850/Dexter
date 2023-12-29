@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 27/12/23, 11:17 am
+ * Created by Hardik on 29/12/23, 5:35 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 27/12/23, 11:17 am
+ * Last modified 29/12/23, 5:35 pm
  *
  */
 
@@ -26,7 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.hardik.dexter.example.theme.DexterTheme
+import com.hardik.dexter.ui.themes.DexterTheme
 
 class SecondActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +70,8 @@ fun startThirdActivity(context: Context) {
         putExtra("key3", "value1")
         putExtra("key4", true)
         putExtra("key5", 10f)
-        putExtra("key6", 100.00)
+        putExtra("key6", arrayOf("Android Studio", "Xcode", "VS code", "Vim"))
+        putExtra("key7", UserModel())
     }.also {
         context.startActivity(it)
     }

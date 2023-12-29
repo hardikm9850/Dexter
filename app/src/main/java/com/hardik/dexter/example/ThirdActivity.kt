@@ -1,13 +1,14 @@
 /*
- * Created by Hardik on 24/12/23, 8:34 pm
+ * Created by Hardik on 28/12/23, 1:08 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 8:34 pm
+ * Last modified 28/12/23, 1:08 pm
  *
  */
 
 package com.hardik.dexter.example
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
@@ -22,9 +23,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.hardik.dexter.example.theme.DexterTheme
+import com.hardik.dexter.ui.themes.DexterTheme
 
 class ThirdActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +56,8 @@ fun Crash(modifier: Modifier = Modifier) {
     Spacer(modifier = Modifier.height(20.dp))
     Button(
         onClick = {
-            throw RuntimeException("crash!")
+            val result = 1 / 0
+            Log.d(ThirdActivity::class.simpleName, "Result is $result")
         },
     ) {
         Text(text = "Crash Me")
