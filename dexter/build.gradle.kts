@@ -9,6 +9,21 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
+    id("maven-publish")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "com.hardik"
+            artifactId = "dexter"
+            version = "1.0"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
 }
 
 android {
