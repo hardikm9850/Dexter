@@ -1,15 +1,14 @@
 /*
- * Created by Hardik on 29/12/23, 5:44 pm
+ * Created by Hardik on 30/12/23, 1:33 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 29/12/23, 5:44 pm
+ * Last modified 30/12/23, 1:33 pm
  *
  */
 
-package com.hardik.dexter.example
+package com.hardik.dexter.example.screen
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
@@ -24,16 +23,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.hardik.dexter.ui.themes.DexterTheme
 
-class MainActivity : ComponentActivity() {
+class ThirdActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DexterTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     color = MaterialTheme.colorScheme.background,
                 ) {
@@ -42,7 +39,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Greeting()
+                        Crash()
                     }
                 }
             }
@@ -51,31 +48,18 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting() {
-    val context = LocalContext.current
+fun Crash(modifier: Modifier = Modifier) {
     Text(
-        text = "Hello There!",
+        text = "Let's crash the app now!",
+        modifier = modifier,
     )
     Spacer(modifier = Modifier.height(20.dp))
     Button(
         onClick = {
-            startSecondActivity(context)
+            val result = 1 / 0
+            Log.d(ThirdActivity::class.simpleName, "Result is $result")
         },
     ) {
-        Text(text = "Click to go to second activity")
-    }
-}
-
-fun startSecondActivity(context: Context) {
-    val platforms = ArrayList<String>()
-    platforms.add("Android")
-    platforms.add("iOS")
-    platforms.add("Flutter")
-    Intent(context, SecondActivity::class.java).apply {
-        putExtra("key1", "value1")
-        putExtra("key2", true)
-        putExtra("key3", platforms)
-    }.also {
-        context.startActivity(it)
+        Text(text = "Crash Me")
     }
 }

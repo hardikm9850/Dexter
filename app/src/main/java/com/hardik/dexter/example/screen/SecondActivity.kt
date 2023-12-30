@@ -1,14 +1,15 @@
 /*
- * Created by Hardik on 28/12/23, 1:08 pm
+ * Created by Hardik on 30/12/23, 1:33 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 28/12/23, 1:08 pm
+ * Last modified 30/12/23, 1:33 pm
  *
  */
 
-package com.hardik.dexter.example
+package com.hardik.dexter.example.screen
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
@@ -23,10 +24,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.hardik.dexter.example.model.UserModel
 import com.hardik.dexter.ui.themes.DexterTheme
 
-class ThirdActivity : ComponentActivity() {
+class SecondActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -39,7 +42,7 @@ class ThirdActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Crash()
+                        Greet()
                     }
                 }
             }
@@ -48,18 +51,29 @@ class ThirdActivity : ComponentActivity() {
 }
 
 @Composable
-fun Crash(modifier: Modifier = Modifier) {
+fun Greet() {
+    val context = LocalContext.current
     Text(
-        text = "Let's crash the app now!",
-        modifier = modifier,
+        text = "Hello There, Again!",
     )
     Spacer(modifier = Modifier.height(20.dp))
     Button(
         onClick = {
-            val result = 1 / 0
-            Log.d(ThirdActivity::class.simpleName, "Result is $result")
+            startThirdActivity(context)
         },
     ) {
-        Text(text = "Crash Me")
+        Text(text = "Let's to go to third activity")
+    }
+}
+
+fun startThirdActivity(context: Context) {
+    Intent(context, ThirdActivity::class.java).apply {
+        putExtra("key3", "value1")
+        putExtra("key4", true)
+        putExtra("key5", 10f)
+        putExtra("key6", arrayOf("Android Studio", "Xcode", "VS code", "Vim"))
+        putExtra("key7", UserModel())
+    }.also {
+        context.startActivity(it)
     }
 }

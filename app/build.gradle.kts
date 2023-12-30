@@ -57,8 +57,8 @@ android {
 }
 
 dependencies {
-
-    implementation(project(mapOf("path" to ":dexter")))
+    implementation("androidx.startup:startup-runtime:1.1.1")
+    implementation("com.github.hardikm9850:Dexter:1.0.0-beta")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.8.1")

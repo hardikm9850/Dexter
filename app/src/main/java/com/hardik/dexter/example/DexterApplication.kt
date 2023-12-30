@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 24/12/23, 8:34 pm
+ * Created by Hardik on 30/12/23, 6:20 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/12/23, 8:34 pm
+ * Last modified 30/12/23, 6:20 pm
  *
  */
 
@@ -14,7 +14,10 @@ class DexterApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         DexterInstaller.setup(
-            this,
+            application = this,
+            defaultExceptionHandler = { thread, throwable ->
+                // No-op
+            },
         )
     }
 }

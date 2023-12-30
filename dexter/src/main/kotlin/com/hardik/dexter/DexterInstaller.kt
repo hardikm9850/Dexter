@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 28/12/23, 1:32 pm
+ * Created by Hardik on 30/12/23, 6:14 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 28/12/23, 1:32 pm
+ * Last modified 30/12/23, 6:14 pm
  *
  */
 
@@ -24,7 +24,6 @@ class DexterInstaller {
          */
         fun setup(
             application: Application,
-            isEnabled: Boolean = true,
             defaultExceptionHandler: Thread.UncaughtExceptionHandler? = null,
             enableDebugging: Boolean = true,
         ) {
@@ -33,7 +32,6 @@ class DexterInstaller {
                     dexterInstance = Dexter().also {
                         it.setup(
                             application,
-                            isEnabled,
                             defaultExceptionHandler,
                             enableDebugging,
                         )

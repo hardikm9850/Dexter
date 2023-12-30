@@ -1,11 +1,11 @@
 /*
- * Created by Hardik on 29/12/23, 5:35 pm
+ * Created by Hardik on 30/12/23, 1:33 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 29/12/23, 5:35 pm
+ * Last modified 30/12/23, 1:33 pm
  *
  */
 
-package com.hardik.dexter.example
+package com.hardik.dexter.example.model
 
 import android.os.Parcel
 import android.os.Parcelable

@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 29/12/23, 5:01 pm
+ * Created by Hardik on 30/12/23, 6:14 pm
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 29/12/23, 5:01 pm
+ * Last modified 30/12/23, 6:14 pm
  *
  */
 
@@ -16,7 +16,6 @@ import java.lang.Thread.UncaughtExceptionHandler
 
 internal class Dexter {
 
-    private var isEnabled: Boolean = false
     private lateinit var application: Application
     private var enableDebugging: Boolean = false
     private var defaultExceptionHandler: UncaughtExceptionHandler? = null
@@ -26,12 +25,10 @@ internal class Dexter {
 
     fun setup(
         application: Application,
-        isEnabled: Boolean = true,
         defaultExceptionHandler: UncaughtExceptionHandler? = null,
         enableDebugging: Boolean = true,
     ) {
         this.application = application
-        this.isEnabled = isEnabled
         this.defaultExceptionHandler = defaultExceptionHandler
         this.enableDebugging = enableDebugging
 
