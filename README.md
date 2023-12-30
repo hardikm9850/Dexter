@@ -1,19 +1,21 @@
 # Dexter
 
 [![](https://jitpack.io/v/hardikm9850/Dexter.svg)](https://jitpack.io/#hardikm9850/Dexter)
-(https://img.shields.io/badge/API-19%2B-brightgreen?style=flat)](https://android-arsenal.com/api?level=19)
-[![Twitter](https://img.shields.io/badge/twitter-ThatMRFBat-blue?style=flat)](https://twitter.com/thatmrfbat)
+[![API](https://img.shields.io/badge/API-19%2B-brightgreen?style=flat)](https://android-arsenal.com/api?level=19)
+[![Twitter](https://img.shields.io/badge/Twitter-ThatMRFBat-blue?style=flat)](https://twitter.com/thatmrfbat)
 
 Dexter records global crashes and offers easy redirection to the exception tracing screen; moreover, it outlines footprints of Activity/Fragment along with the respective bundle data.
 
-Use case :
+## 🌧 Use case :
 The QA team may frequently raise a problem relating to an app crash that is either unique or difficult to duplicate. Without stacktrace information, it is difficult for us developers to determine the root problem.
 
-![image description](media/dexter.gif)
 
 
-Dexter to the rescue
-With Dexter, the development team can receive above-mentioned details from QA team and would be able to perform the same steps using the same bundle data. This strategy might help detect serious issues much sooner.
+<img src="https://media2.giphy.com/media/VLljKzBZ2uPfYDpsNV/giphy.gif" width="300" height="300" class="center"/>
+
+_Dexter to the rescue_
+\
+With Dexter, the QA team would share the **_stacktrace info and user journey footprints_** to the development team. This approach may spare the developers from the headache of having to manually carry out the actions to identify the root cause (read exception)
 
 
 ## ✨Features
@@ -21,8 +23,17 @@ With Dexter, the development team can receive above-mentioned details from QA te
 - Stacktrace of the uncaught exception
 - User journey footprints along with the bundle data
 - Option to export this detail via email
-
+\
 ## ▶️ Demo
+
+
+
+
+https://github.com/hardikm9850/Dexter/assets/16346765/da70a1f4-75c7-4cf0-898f-550dfecdd1ca
+
+
+
+
 
 
 ## ⚒ Download
