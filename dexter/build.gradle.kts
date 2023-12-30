@@ -28,7 +28,7 @@ publishing {
 
 android {
     namespace = "com.hardik.dexter"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 19
