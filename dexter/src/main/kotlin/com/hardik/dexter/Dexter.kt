@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 30/12/23, 6:14 pm
- * Copyright (c) 2023 . All rights reserved.
- * Last modified 30/12/23, 6:14 pm
+ * Created by Hardik on 01/01/24, 7:04 pm
+ * Copyright (c) 2024 . All rights reserved.
+ * Last modified 01/01/24, 7:04 pm
  *
  */
 
@@ -51,8 +51,30 @@ internal class Dexter {
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             // On receiving the uncaught exception, we need to store in preference
             DexterLogger.e(TAG, "Exception received on thread $thread", throwable)
-            showCrashInvestigationReport(Log.getStackTraceString(throwable))
+            prepareCrashReport(throwable)
             allowDefaultExceptionHandling(thread, throwable)
+        }
+    }
+
+    private fun prepareCrashReport(throwable: Throwable) {
+        val deviceInfo = collectDeviceInfo()
+        val stacktrace = Log.getStackTraceString(throwable)
+        val logInfo = buildString {
+            append("===== Device Information =====\n")
+            append(deviceInfo)
+            append("\n===== Stacktrace =====\n")
+            append(stacktrace + "\n")
+        }
+        showCrashInvestigationReport(logInfo)
+    }
+
+    private fun collectDeviceInfo(): String {
+        return buildString {
+            append("OS version = ${System.getProperty("os.version")}\n") // OS version
+            append("SDK version = ${android.os.Build.VERSION.RELEASE}\n") // API Level
+            append("Device =  ${android.os.Build.DEVICE}\n")
+            append("Model = ${android.os.Build.MODEL}\n")
+            append("Product name = ${android.os.Build.PRODUCT}\n")
         }
     }
 
