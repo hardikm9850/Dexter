@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 29/12/23, 5:47 pm
- * Copyright (c) 2023 . All rights reserved.
- * Last modified 29/12/23, 5:47 pm
+ * Created by Hardik on 01/01/24, 6:47 pm
+ * Copyright (c) 2024 . All rights reserved.
+ * Last modified 01/01/24, 6:47 pm
  *
  */
 
@@ -9,27 +9,20 @@ package com.hardik.dexter.utils.ext
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
-import java.io.Serializable
+import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-fun Intent.toKeyValuePair(): Map<String, String> {
-    return this.extras?.toKeyValuePair() ?: emptyMap()
+fun Intent.toKeyValuePair(gson: Gson): Map<String, String> {
+    return this.extras?.toKeyValuePair(gson) ?: emptyMap()
 }
 
-fun Bundle.toKeyValuePair(): Map<String, String> {
+fun Bundle.toKeyValuePair(gson: Gson): Map<String, String> {
     val bundleMap = mutableMapOf<String, String>()
     keySet()?.forEach { key ->
-        get(key)?.let { value ->
-            bundleMap[key] = when (value) {
-                is Array<*> -> this.getStringArray(key)?.toList()
-                    ?.convertToString().orEmpty()
-                is Parcelable -> this.getParcelable<Parcelable>(key).toString()
-                is Serializable -> this.getSerializable(key).toString()
-                else -> this.get(key).toString()
-            }
+        get(key)?.let { rawValue ->
+            bundleMap[key] = gson.toJson(rawValue)
         }
     }
     return bundleMap

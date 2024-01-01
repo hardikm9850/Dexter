@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 27/12/23, 12:51 pm
- * Copyright (c) 2023 . All rights reserved.
- * Last modified 27/12/23, 12:51 pm
+ * Created by Hardik on 01/01/24, 6:47 pm
+ * Copyright (c) 2024 . All rights reserved.
+ * Last modified 01/01/24, 6:47 pm
  *
  */
 
@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
+import com.google.gson.Gson
 import com.hardik.dexter.internal.model.ActivityInfo
 import com.hardik.dexter.internal.model.FragmentInfo
 import com.hardik.dexter.ui.ReportActivity
@@ -27,6 +28,7 @@ class ActivityTracker constructor(private val application: Application) :
 
     private val activityList = mutableListOf<ActivityInfo>()
     private val fragmentList = mutableListOf<FragmentInfo>()
+    private val gson = Gson()
 
     init {
         trackActivityJourney()
@@ -51,7 +53,7 @@ class ActivityTracker constructor(private val application: Application) :
                 activityList.add(
                     ActivityInfo(
                         activity = activity::class.java.simpleName,
-                        bundleData = activity.intent.toKeyValuePair(),
+                        bundleData = activity.intent.toKeyValuePair(gson),
                         createdTimeStamp = System.currentTimeMillis().getDateForTimeStamp(),
                     ),
                 )
@@ -82,7 +84,7 @@ class ActivityTracker constructor(private val application: Application) :
         fragmentList.add(
             FragmentInfo(
                 fragmentName = f::class.java.simpleName,
-                bundle = savedInstanceState?.toKeyValuePair().orEmpty(),
+                bundle = savedInstanceState?.toKeyValuePair(gson).orEmpty(),
                 timeStamp = System.currentTimeMillis().getDateForTimeStamp(),
             ),
         )
