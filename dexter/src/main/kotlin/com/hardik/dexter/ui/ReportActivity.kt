@@ -1,7 +1,7 @@
 /*
- * Created by Hardik on 28/12/23, 1:25 pm
- * Copyright (c) 2023 . All rights reserved.
- * Last modified 28/12/23, 1:25 pm
+ * Created by Hardik on 01/01/24, 7:03 pm
+ * Copyright (c) 2024 . All rights reserved.
+ * Last modified 01/01/24, 7:03 pm
  *
  */
 
@@ -21,7 +21,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -103,7 +103,7 @@ class ReportActivity : androidx.activity.ComponentActivity() {
                             IconButton(onClick = {
                                 shareCrashReport()
                             }) {
-                                Icon(Icons.Filled.Send, "Send logs", tint = Color.White)
+                                Icon(Icons.Filled.Share, "Send logs", tint = Color.White)
                             }
                         },
                     )
