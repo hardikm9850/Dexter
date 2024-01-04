@@ -24,7 +24,7 @@ class DexterInstaller {
          */
         fun setup(
             application: Application,
-            defaultExceptionHandler: Thread.UncaughtExceptionHandler? = null,
+            uncaughtExceptionHandler: ((Throwable) -> Unit)? = null,
             enableDebugging: Boolean = true,
         ) {
             synchronized(lock) {
@@ -32,7 +32,7 @@ class DexterInstaller {
                     dexterInstance = Dexter().also {
                         it.setup(
                             application,
-                            defaultExceptionHandler,
+                            uncaughtExceptionHandler,
                             enableDebugging,
                         )
                     }

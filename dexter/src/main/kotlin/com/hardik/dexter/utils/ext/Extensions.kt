@@ -14,6 +14,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+val Any.TAG: String
+    get() = this::class.simpleName.orEmpty()
+
 fun Intent.toKeyValuePair(gson: Gson): Map<String, String> {
     return this.extras?.toKeyValuePair(gson) ?: emptyMap()
 }
