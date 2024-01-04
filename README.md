@@ -9,10 +9,6 @@ Dexter records global crashes and offers easy redirection to the exception traci
 ## 🌧 Use case :
 The QA team may frequently raise a problem relating to an app crash that is either unique or difficult to duplicate. Without stacktrace information, it is difficult for us developers to determine the root problem.
 
-
-
-<img src="https://media2.giphy.com/media/VLljKzBZ2uPfYDpsNV/giphy.gif" width="300" height="300" class="center"/>
-
 _Dexter to the rescue_
 \
 With Dexter, the QA team would share the **_stacktrace info and user journey footprints_** to the development team. This approach may spare the developers from the headache of having to manually carry out the actions to identify the root cause (read exception)
