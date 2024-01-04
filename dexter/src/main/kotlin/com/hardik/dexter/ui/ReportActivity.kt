@@ -167,7 +167,7 @@ class ReportActivity : androidx.activity.ComponentActivity() {
 
     companion object {
 
-        fun getReportActivityInstance(
+        fun showForensicReport(
             context: Context,
             stackTrace: String,
             activityJourney: List<ActivityInfo>,

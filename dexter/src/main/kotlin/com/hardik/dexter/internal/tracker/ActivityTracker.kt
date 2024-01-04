@@ -22,7 +22,7 @@ import com.hardik.dexter.ui.ReportActivity
 import com.hardik.dexter.utils.ext.getDateForTimeStamp
 import com.hardik.dexter.utils.ext.toKeyValuePair
 
-class ActivityTracker constructor(private val application: Application) :
+class ActivityTracker(private val application: Application) :
     FragmentLifecycleCallbacks() {
     private var recentActivity: Activity? = null
 

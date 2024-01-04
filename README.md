@@ -39,6 +39,17 @@ https://github.com/hardikm9850/Dexter/assets/16346765/da70a1f4-75c7-4cf0-898f-55
 ## ⚒ Download
 [![](https://jitpack.io/v/hardikm9850/Dexter.svg)](https://jitpack.io/#hardikm9850/Dexter)
 #### Gradle
+Make sure that the following is part of your project-level `build.gradle` file:
+```Gradle
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        // ...
+        maven { url = URI("https://jitpack.io") }
+    }
+}
+```
+
 Add the dependency below to your **module**'s `build.gradle` file:
 ```Gradle
 implementation 'com.github.hardikm9850:Dexter:$latest_version'

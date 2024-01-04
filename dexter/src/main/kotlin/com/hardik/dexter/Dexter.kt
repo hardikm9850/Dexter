@@ -8,28 +8,32 @@
 package com.hardik.dexter
 
 import android.app.Application
-import android.util.Log
 import com.hardik.dexter.internal.logger.DexterLogger
 import com.hardik.dexter.internal.tracker.ActivityTracker
-import com.hardik.dexter.ui.ReportActivity
 import java.lang.Thread.UncaughtExceptionHandler
+import kotlin.system.exitProcess
+import android.os.Process
+import com.hardik.dexter.internal.model.ActivityInfo
+import com.hardik.dexter.internal.model.FragmentInfo
+import com.hardik.dexter.utils.EvidenceManager
+import com.hardik.dexter.utils.ReportCreator
+import com.hardik.dexter.utils.ext.TAG
 
 internal class Dexter {
 
-    private lateinit var application: Application
     private var enableDebugging: Boolean = false
-    private var defaultExceptionHandler: UncaughtExceptionHandler? = null
+    private var defaultExceptionHandler: ((Throwable) -> Unit)? = null
+    private val listOfDefaultExceptionHandlers = mutableListOf<UncaughtExceptionHandler>()
     private lateinit var activityTracker: ActivityTracker
-
-    private val TAG = Dexter::class.simpleName.orEmpty()
+    private lateinit var application: Application
 
     fun setup(
         application: Application,
-        defaultExceptionHandler: UncaughtExceptionHandler? = null,
+        uncaughtExceptionHandler: ((Throwable) -> Unit)? = null,
         enableDebugging: Boolean = true,
     ) {
         this.application = application
-        this.defaultExceptionHandler = defaultExceptionHandler
+        this.defaultExceptionHandler = uncaughtExceptionHandler
         this.enableDebugging = enableDebugging
 
         init()
@@ -39,6 +43,7 @@ internal class Dexter {
         DexterLogger.shouldEnableLogging(enableDebugging)
         DexterLogger.d(TAG, "Dexter is being initialised")
 
+        addUserDefinedUncaughtExceptionHandler()
         setUncaughtExceptionHandler()
         setupActivityTracker()
     }
@@ -48,57 +53,65 @@ internal class Dexter {
     }
 
     private fun setUncaughtExceptionHandler() {
-        Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
-            // On receiving the uncaught exception, we need to store in preference
-            DexterLogger.e(TAG, "Exception received on thread $thread", throwable)
-            prepareCrashReport(throwable)
-            allowDefaultExceptionHandling(thread, throwable)
+        Thread.setDefaultUncaughtExceptionHandler(CrimeEventListener())
+    }
+
+    /**
+     * This takes care of handling any other crash monitoring libs such as
+     * 1. Firebase crashlytics
+     * 2. User provided exception handling lambda [defaultExceptionHandler]
+     */
+    private fun addUserDefinedUncaughtExceptionHandler() {
+        defaultExceptionHandler?.let {
+            listOfDefaultExceptionHandlers.add(UncaughtExceptionHandler { t, e ->
+                it.invoke(e)
+            })
+        }
+        Thread.getDefaultUncaughtExceptionHandler()?.let {
+            listOfDefaultExceptionHandlers.add(it)
         }
     }
 
-    private fun prepareCrashReport(throwable: Throwable) {
-        val deviceInfo = collectDeviceInfo()
-        val stacktrace = Log.getStackTraceString(throwable)
-        val logInfo = buildString {
-            append("===== Device Information =====\n")
-            append(deviceInfo)
-            append("\n===== Stacktrace =====\n")
-            append(stacktrace + "\n")
-        }
-        showCrashInvestigationReport(logInfo)
-    }
-
-    private fun collectDeviceInfo(): String {
-        return buildString {
-            append("OS version = ${System.getProperty("os.version")}\n") // OS version
-            append("SDK version = ${android.os.Build.VERSION.RELEASE}\n") // API Level
-            append("Device =  ${android.os.Build.DEVICE}\n")
-            append("Model = ${android.os.Build.MODEL}\n")
-            append("Product name = ${android.os.Build.PRODUCT}\n")
-        }
-    }
-
-    private fun showCrashInvestigationReport(stacktrace: String) {
+    /**
+     * Provide a summary of the events that preceded the criminal activity
+     */
+    private fun getRecapOfEvents(): Pair<MutableList<ActivityInfo>, MutableList<FragmentInfo>> {
         val activityHistory = activityTracker.getActivityJourney()
         val fragmentHistory = activityTracker.getFragmentJourney()
-
-        ReportActivity.getReportActivityInstance(
-            application,
-            stacktrace,
-            activityHistory.reversed(),
-            fragmentHistory.reversed(),
-        )
-
-        activityTracker = ActivityTracker(application)
+        return Pair(activityHistory,fragmentHistory)
     }
 
     private fun allowDefaultExceptionHandling(thread: Thread, throwable: Throwable) {
-        defaultExceptionHandler?.let { handler ->
-            handler::class.java.canonicalName?.apply {
-                if (startsWith("com.google.firease.crashlytics").not()) {
-                    DexterLogger.d(TAG, "Executing other exception handlers if any")
-                    handler.uncaughtException(thread, throwable)
-                }
+        listOfDefaultExceptionHandlers.forEach { handler ->
+            try {
+                handler.uncaughtException(thread, throwable)
+            } catch (e: Exception) {
+                DexterLogger.e(TAG, "Exception occurred while iterating over default handlers", e)
+            }
+        }
+    }
+
+    inner class CrimeEventListener : UncaughtExceptionHandler {
+
+        override fun uncaughtException(thread: Thread, throwable: Throwable) {
+            try {
+                DexterLogger.e(TAG, "A new crime has been reported", throwable)
+                DexterLogger.d(TAG,"===== Autopsy will now be performed =====")
+                val crimeEvidence = EvidenceManager.getCrimeEvidence(throwable)
+                val (activityHistory, fragmentHistory) = getRecapOfEvents()
+                ReportCreator.prepareEvidenceReport(
+                    application = application,
+                    stacktrace = crimeEvidence,
+                    activityHistory = activityHistory,
+                    fragmentHistory = fragmentHistory
+                )
+                allowDefaultExceptionHandling(thread, throwable)
+            } catch (e: Exception) {
+                DexterLogger.e(TAG, "Exception occurred while analysing the evidences", e)
+            } finally {
+                activityTracker = ActivityTracker(application)
+                Process.killProcess(Process.myPid())
+                exitProcess(2)
             }
         }
     }
