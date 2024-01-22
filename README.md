@@ -37,12 +37,9 @@ https://github.com/hardikm9850/Dexter/assets/16346765/da70a1f4-75c7-4cf0-898f-55
 #### Gradle
 Make sure that the following is part of your project-level `build.gradle` file:
 ```Gradle
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
+repositories {
         // ...
-        maven { url = URI("https://jitpack.io") }
-    }
+        maven { url 'https://jitpack.io' }
 }
 ```
 
